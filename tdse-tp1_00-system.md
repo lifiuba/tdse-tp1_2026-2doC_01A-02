@@ -16,3 +16,11 @@ Este modelo describe el comportamiento del módulo de procesamiento principal (`
 ## Acciones y Señales Generadas (Outputs)
 * `EV_LED_ON`: Señal enviada al modelo Actuator para encender la indicación luminosa (ej. barrera abierta / ticket procesado).
 * `EV_LED_OFF`: Señal enviada al modelo Actuator para apagar la indicación luminosa (ej. estado de espera / barrera cerrada).
+
+## System Statechart - State Transition Table
+
+| Current State | Event | [Guard] | Next State | Actions |
+| :--- | :--- | :--- | :--- | :--- |
+| **Initial** | - | - | `ST_SYS_OFF` | - |
+| `ST_SYS_OFF` | `EV_SYS_UP` | - | `ST_SYS_ON` | `raise EV_LED_ON` |
+| `ST_SYS_ON` | `EV_SYS_DOWN` | - | `ST_SYS_OFF` | `raise EV_LED_OFF` |

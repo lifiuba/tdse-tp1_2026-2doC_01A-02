@@ -19,3 +19,15 @@ Este modelo describe el comportamiento de un módulo de código C temporizado (`
 * `EV_SYS_BTN_RELEASED`: Señal enviada al modelo System cuando se confirma que el pulsador ha sido liberado de forma estable.
 * `tick = 0`: Inicialización del contador de tiempo para el filtrado de rebotes.
 * `tick++`: Incremento del timer temporizado cada 1 ms (`Update by Time Code`).
+
+## Sensor Statechart - State Transition Table
+
+| Current State | Event | [Guard] | Next State | Actions |
+| :--- | :--- | :--- | :--- | :--- |
+| **Initial** | - | - | `ST_BTN_UP` | - |
+| `ST_BTN_UP` | `EV_BTN_PRESSED` | - | `ST_BTN_FALLING` | - |
+| `ST_BTN_FALLING` | `EV_BTN_ERROR` | - | `ST_BTN_UP` | - |
+| `ST_BTN_FALLING` | `after 1ms` | - | `ST_BTN_DOWN` | `raise EV_SYS_DOWN` |
+| `ST_BTN_DOWN` | `EV_BTN_RELEASED` | - | `ST_BTN_RISING` | - |
+| `ST_BTN_RISING` | `EV_BTN_ERROR` | - | `ST_BTN_DOWN` | - |
+| `ST_BTN_RISING` | `after 1ms` | - | `ST_BTN_UP` | `raise EV_SYS_UP` |

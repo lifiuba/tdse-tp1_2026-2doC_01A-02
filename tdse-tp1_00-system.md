@@ -22,5 +22,5 @@ Este modelo describe el comportamiento del módulo de procesamiento principal (`
 | Current State | Event | [Guard] | Next State | Actions |
 | :--- | :--- | :--- | :--- | :--- |
 | **Initial** | - | - | `ST_SYS_OFF` | - |
-| `ST_SYS_OFF` | `EV_SYS_UP` | - | `ST_SYS_ON` | `raise EV_LED_ON` |
-| `ST_SYS_ON` | `EV_SYS_DOWN` | - | `ST_SYS_OFF` | `raise EV_LED_OFF` |
+| `ST_SYS_ON` | `EV_SYS_UP` | - | `ST_SYS_OFF` | `raise EV_LED_OFF` |
+| `ST_SYS_OFF` | `EV_SYS_DOWN` | - | `ST_SYS_ON` | `raise EV_LED_ON` |

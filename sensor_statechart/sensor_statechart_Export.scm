@@ -17,7 +17,7 @@
             "text": "sensor_statechart Export"
           },
           "specification": {
-            "text": "@EventDriven\n@SuperSteps(no)\n\ninterface:\n    in event EV_BTN_PRESSED\n    in event EV_BTN_FALLING\n    in event EV_SYS_DOWN\n    in event EV_BTN_RELEASED\n    in event EV_BTN_RISING\n    in event EV_SYS_UP\n    in event EV_BTN_ERROR"
+            "text": "@EventDriven\n@SuperSteps(no)\n\ninterface:\n    in event EV_BTN_PRESSED\n    in event EV_BTN_FALLING\n    in event EV_SYS_DOWN\n    in event EV_BTN_RELEASED\n    in event EV_BTN_RISING\n    in event EV_SYS_UP\n    var tick: integer = 0"
           }
         },
         "z": 1
@@ -36,38 +36,13 @@
           "name": {
             "text": "ST_BTN_UP",
             "fontSize": 11
+          },
+          "specification": {
+            "text": "entry / tick = 0"
           }
         },
         "id": "23333e1c-af34-41e5-bc73-985d7012490c",
         "z": 49
-      },
-      {
-        "type": "Note",
-        "attrs": {
-          "root": {
-            "display": ""
-          },
-          "body": {
-            "filter": {
-              "args": {}
-            }
-          },
-          "label": {
-            "text": "ERROR son identicos, es un ruido que invoca a un estado falso"
-          }
-        },
-        "position": {
-          "x": -34,
-          "y": -301
-        },
-        "size": {
-          "width": 450.71875,
-          "height": 60
-        },
-        "angle": 0,
-        "linkable": false,
-        "id": "40e0140a-25f0-4a71-9f49-d0316641e291",
-        "z": 68
       },
       {
         "position": {
@@ -86,7 +61,10 @@
           }
         },
         "id": "ab623ff4-4e87-4e0a-9de2-b5f4e8a99160",
-        "z": 70
+        "z": 70,
+        "embeds": [
+          "6d56dcb4-5c32-492e-8890-98082dfa2543"
+        ]
       },
       {
         "type": "Transition",
@@ -164,7 +142,7 @@
           {
             "attrs": {
               "text": {
-                "text": "EV_BTN_ERROR"
+                "text": "after 10 s"
               }
             },
             "position": {}
@@ -207,7 +185,10 @@
           }
         },
         "id": "94e79387-9d55-426b-a75d-4913722d106d",
-        "z": 75
+        "z": 75,
+        "embeds": [
+          "8d8c1b58-4744-4a1c-92ff-063a767860e1"
+        ]
       },
       {
         "position": {
@@ -253,7 +234,7 @@
           {
             "attrs": {
               "text": {
-                "text": "EV_BTN_ERROR"
+                "text": "after 10 s"
               }
             },
             "position": {
@@ -307,7 +288,7 @@
           {
             "attrs": {
               "text": {
-                "text": "after 10 s / raise EV_SYS_DOWN"
+                "text": "[tick == 5] / raise EV_SYS_DOWN"
               }
             },
             "position": {
@@ -362,7 +343,7 @@
           {
             "attrs": {
               "text": {
-                "text": "EV_BTN_RELEASED"
+                "text": "EV_BTN_RELEASED / tick = 1"
               }
             },
             "position": {
@@ -417,7 +398,7 @@
           {
             "attrs": {
               "text": {
-                "text": "after 10 s / raise EV_SYS_UP"
+                "text": "[tick == 5] / raise EV_SYS_UP"
               }
             },
             "position": {
@@ -534,6 +515,119 @@
           "name": "orthogonal"
         },
         "vertices": []
+      },
+      {
+        "type": "Transition",
+        "attrs": {},
+        "source": {
+          "id": "ab623ff4-4e87-4e0a-9de2-b5f4e8a99160"
+        },
+        "target": {
+          "id": "ab623ff4-4e87-4e0a-9de2-b5f4e8a99160",
+          "anchor": {
+            "name": "topLeft",
+            "args": {
+              "dx": "100%",
+              "dy": "46.154%",
+              "rotate": true
+            }
+          },
+          "priority": true
+        },
+        "connector": {
+          "name": "rounded"
+        },
+        "labels": [
+          {
+            "attrs": {
+              "text": {
+                "text": "EV_BTN_PRESSED / tick =+5"
+              }
+            },
+            "position": {}
+          },
+          {
+            "attrs": {
+              "label": {
+                "text": "3"
+              }
+            }
+          },
+          {
+            "attrs": {}
+          },
+          {
+            "attrs": {}
+          }
+        ],
+        "id": "6d56dcb4-5c32-492e-8890-98082dfa2543",
+        "z": 84,
+        "router": {
+          "name": "orthogonal"
+        },
+        "vertices": [],
+        "parent": "ab623ff4-4e87-4e0a-9de2-b5f4e8a99160"
+      },
+      {
+        "type": "Transition",
+        "attrs": {},
+        "source": {
+          "id": "94e79387-9d55-426b-a75d-4913722d106d"
+        },
+        "target": {
+          "id": "94e79387-9d55-426b-a75d-4913722d106d",
+          "anchor": {
+            "name": "topLeft",
+            "args": {
+              "dx": "0.599%",
+              "dy": "62.609%",
+              "rotate": true
+            }
+          },
+          "priority": true
+        },
+        "connector": {
+          "name": "rounded"
+        },
+        "labels": [
+          {
+            "attrs": {
+              "text": {
+                "text": "EV_BTN_RELEASED / tick =+5"
+              }
+            },
+            "position": {
+              "distance": 0.28426573736696314,
+              "offset": -17.5,
+              "angle": 0
+            }
+          },
+          {
+            "attrs": {
+              "label": {
+                "text": "3"
+              }
+            }
+          },
+          {
+            "attrs": {}
+          },
+          {
+            "attrs": {}
+          }
+        ],
+        "id": "8d8c1b58-4744-4a1c-92ff-063a767860e1",
+        "z": 85,
+        "router": {
+          "name": "orthogonal"
+        },
+        "vertices": [
+          {
+            "x": -568,
+            "y": 47
+          }
+        ],
+        "parent": "94e79387-9d55-426b-a75d-4913722d106d"
       }
     ]
   },
